@@ -18,10 +18,10 @@ class BulkDiscountsController < ApplicationController
 
     if bulk_discount.valid?
         bulk_discount.save!
-        redirect_to "/merchants/#{params[:merchant_id].to_i}/bulk_discounts", notice: "Bulk discount created."
+        redirect_to "/merchants/#{params[:merchant_id]}/bulk_discounts", notice: "Bulk discount created."
     else
         flash[:alert] = bulk_discount.errors.full_messages.join("") + "!"
-        redirect_back(fallback_location: "/merchants/#{params[:merchant_id].to_i}/bulk_discounts/new")
+        redirect_to  "/merchants/#{params[:merchant_id]}/bulk_discounts/new"
       end
     end
 
