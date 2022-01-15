@@ -19,7 +19,6 @@ class BulkDiscountsController < ApplicationController
     if bulk_discount.valid?
         bulk_discount.save!
         redirect_to merchant_bulk_discounts_path(params[:merchant_id]), notice: "Bulk discount created."
-
     else
         flash[:alert] = bulk_discount.errors.full_messages.join("") + "!"
         redirect_to  new_merchant_bulk_discount_path(params[:merchant_id])
@@ -29,7 +28,7 @@ class BulkDiscountsController < ApplicationController
     def destroy
       BulkDiscount.find_by(bulk_discount_params).delete
 
-      redirect_to merchant_bulk_discounts_path(params[:merchant_id]),  notice: "Bulk discount destroyed."
+      redirect_to new_merchant_bulk_discount_path(params[:merchant_id]),  notice: "Bulk discount destroyed."
     end
 
     private
