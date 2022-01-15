@@ -7,7 +7,7 @@ RSpec.describe 'the merchants dashboard page' do
   let!(:discount_1) {merchant_1.bulk_discounts.create!(percent_off: 50, quantity_threshold: 10)}
   let!(:discount_2) {merchant_1.bulk_discounts.create!(percent_off: 25, quantity_threshold: 20)}
   let!(:discount_3) {merchant_1.bulk_discounts.create!(percent_off: 15, quantity_threshold: 10)}
-  let!(:discount_4) {merchant_2.bulk_discounts.create!(percent_off: 75, quantity_threshold: 60)}
+  let!(:discount_4) {merchant_2.bulk_discounts.create!(percent_off: 71, quantity_threshold: 60)}
 
 
   let!(:item_1) {merchant_1.items.create!(name: 'Obsidian Nobice', description: 'A beautiful obsidian', unit_price: 50)}
@@ -128,6 +128,29 @@ RSpec.describe 'the merchants dashboard page' do
 
     expect(page).to_not have_content(discount_4.quantity_threshold)
     expect(page).to_not have_content(discount_4.percent_off)
+  end
+
+  it "displays a link that creates a new bulk discount" do
+    visit "/merchants/#{merchant_1.id}/dashboard"
+    click_link("Create a New Bulk Discount")
+    fill_in :percent_off, with: 65
+    fill_in :quantity_threshold, with: 11
+    click_button "Create Bulk Discount"
+    expect(current_path).to eq("/merchants/#{merchant_1.id}/bulk_discounts")
+    expect(page).to have_content(BulkDiscount.all.last.percent_off)
+    expect(page).to have_content(BulkDiscount.all.last.quantity_threshold)
+    expect(page).to have_content(BulkDiscount.all.last.id)
+    expect(page).to have_content("Bulk discount created.")
+  end
+
+  it "displays sad path if create a new bulk discount fails" do
+    visit "/merchants/#{merchant_1.id}/dashboard"
+    click_link("Create a New Bulk Discount")
+    fill_in :percent_off, with: 120
+    fill_in :quantity_threshold, with: 11
+    click_button "Create Bulk Discount"
+    expect(page).to have_content("Percent off must be less than or equal to 100!")
+    expect(current_path).to eq("/merchants/#{merchant_1.id}/bulk_discounts/new")
   end
 end
 

@@ -93,7 +93,7 @@ RSpec.describe Merchant, type: :model do
 
   describe 'instance methods' do
 
-    xit "favorite customers" do
+    it "favorite customers" do
       expect(merchant_1.favorite_customers).to eq([customer_5, customer_1, customer_2, customer_3,  customer_4])
     end
 
