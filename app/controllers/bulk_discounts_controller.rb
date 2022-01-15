@@ -2,7 +2,6 @@ class BulkDiscountsController < ApplicationController
 
   def index
     @merchant = Merchant.find(params[:merchant_id])
-    # @bulk_discounts = BulkDiscount.where(bulk_discount_params)
   end
 
   def show
@@ -20,8 +19,10 @@ class BulkDiscountsController < ApplicationController
         bulk_discount.save!
         redirect_to merchant_bulk_discounts_path(params[:merchant_id]), notice: "Bulk discount created."
     else
+      respond_to do |format|
+        format.html {redirect_to request.referrer}
+      end
         flash[:alert] = bulk_discount.errors.full_messages.join("") + "!"
-        redirect_to  new_merchant_bulk_discount_path(params[:merchant_id])
       end
     end
 
@@ -36,8 +37,7 @@ class BulkDiscountsController < ApplicationController
   end
 
   def update
-    bulk_discount = BulkDiscount.find(params[:id])
-    bulk_discount.assign_attributes(bulk_discount_params)
+    bulk_discount = BulkDiscount.find(params[:id]).assign_attributes(bulk_discount_params)
     if bulk_discount.valid?
       bulk_discount.update(bulk_discount_params)
       redirect_to merchant_bulk_discount_path(params[:merchant_id], params[:id])
