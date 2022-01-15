@@ -4,6 +4,10 @@ class BulkDiscountsController < ApplicationController
     @bulk_discounts = BulkDiscount.where(bulk_discount_params)
   end
 
+  def show
+    @bulk_discount = BulkDiscount.find_by(bulk_discount_params)
+  end
+
   def new
 
   end
