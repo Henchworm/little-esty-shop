@@ -28,11 +28,7 @@ class BulkDiscountsController < ApplicationController
   def destroy
     BulkDiscount.find_by(bulk_discount_params).delete
 
-<<<<<<< HEAD
     redirect_to merchant_bulk_discounts_path(params[:merchant_id]),  notice: "Bulk discount destroyed."
-=======
-    redirect_to nmerchant_bulk_discounts_path(params[:merchant_id]),  notice: "Bulk discount destroyed."
->>>>>>> ffc7dca2fdb1c714d0d6bc9edf625c3ad3c16a04
   end
 
   private
