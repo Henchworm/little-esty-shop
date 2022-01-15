@@ -9,6 +9,11 @@
 merchant_1 = Merchant.create!(name: 'Billys Pet Rocks', status: 0)
 merchant_2 = Merchant.create!(name: 'Jimmy Pet Stones', status: 1)
 
+merchant_1.bulk_discounts.create!(percent_off: 50, quantity_threshold: 10)
+merchant_1.bulk_discounts.create!(percent_off: 25, quantity_threshold: 20)
+merchant_1.bulk_discounts.create!(percent_off: 15, quantity_threshold: 10)
+merchant_2.bulk_discounts.create!(percent_off: 71, quantity_threshold: 60)
+
 
 item_1 = merchant_1.items.create!(name: 'Obsidian Nobice', description: 'A beautiful obsidian', unit_price: 50)
 item_2 = merchant_1.items.create!(name: 'Pleasure Geode', description: 'Glamourous Geode', unit_price: 100)

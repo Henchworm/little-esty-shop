@@ -1,4 +1,6 @@
-<h1>Bulk Discounts for <%= @bulk_discounts.first.merchant.name %></h1>
+<h1>Bulk Discounts for <%=@bulk_discounts.first.merchant.name %></h1>
+<p><%= link_to "Create a New Bulk Discount", "/merchants/#{params[:merchant_id]}/bulk_discounts/new", method: :get%></p>
+
 <% @bulk_discounts.each do |discount| %>
   <ul><span>Discount id: <%= discount.id %>,
     Percent Off: <%= discount.percent_off%>,
