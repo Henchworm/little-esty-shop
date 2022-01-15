@@ -7,7 +7,7 @@ RSpec.describe 'the merchants dashboard page' do
   let!(:discount_1) {merchant_1.bulk_discounts.create!(percent_off: 50, quantity_threshold: 10)}
   let!(:discount_2) {merchant_1.bulk_discounts.create!(percent_off: 25, quantity_threshold: 20)}
   let!(:discount_3) {merchant_1.bulk_discounts.create!(percent_off: 15, quantity_threshold: 10)}
-  let!(:discount_4) {merchant_2.bulk_discounts.create!(percent_off: 71, quantity_threshold: 60)}
+  let!(:discount_4) {merchant_2.bulk_discounts.create!(percent_off: 71, quantity_threshold: 7777)}
 
 
   let!(:item_1) {merchant_1.items.create!(name: 'Obsidian Nobice', description: 'A beautiful obsidian', unit_price: 50)}
