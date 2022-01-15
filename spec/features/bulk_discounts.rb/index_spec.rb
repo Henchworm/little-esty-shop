@@ -5,7 +5,7 @@ RSpec.describe 'the bulk discounts index page' do
   let!(:merchant_2) {Merchant.create!(name: 'Nicks Slick Pics')}
 
 
-  let!(:discount_1) {merchant_1.bulk_discounts.create!(percent_off: 50, quantity_threshold: 10)}
+  let!(:discount_1) {merchant_1.bulk_discounts.create!(id: 7777, percent_off: 50, quantity_threshold: 10)}
   let!(:discount_2) {merchant_1.bulk_discounts.create!(percent_off: 25, quantity_threshold: 20)}
   let!(:discount_3) {merchant_1.bulk_discounts.create!(percent_off: 15, quantity_threshold: 10)}
   let!(:discount_4) {merchant_2.bulk_discounts.create!(percent_off: 3, quantity_threshold: 60)}
@@ -34,11 +34,12 @@ RSpec.describe 'the bulk discounts index page' do
     expect(current_path).to eq("/merchants/#{merchant_1.id}/bulk_discounts/new")
   end
 
-  xit "displays a link that deletes a bulk discount" do
+  it "displays a link that deletes a bulk discount" do
     visit "/merchants/#{merchant_1.id}/bulk_discounts"
+    save_and_open_page
     click_link("Delete Bulk Discount #{discount_1.id}")
     expect(page).to_not have_content(discount_1.id)
-    expect(page).to_not have_content(discount_1.percent_off)
-    expect(page).to_not have_content(discount_1.quantity_threshold)
+    save_and_open_page
+
   end
 end
