@@ -37,7 +37,8 @@ class BulkDiscountsController < ApplicationController
   end
 
   def update
-    bulk_discount = BulkDiscount.find(params[:id]).assign_attributes(bulk_discount_params)
+    bulk_discount = BulkDiscount.find(params[:id])
+    bulk_discount.assign_attributes(bulk_discount_params)
     if bulk_discount.valid?
       bulk_discount.update(bulk_discount_params)
       redirect_to merchant_bulk_discount_path(params[:merchant_id], params[:id])
