@@ -14,6 +14,7 @@ RSpec.describe 'the bulk discounts index page' do
   it "displays a link that creates a new bulk discount" do
     visit "/merchants/#{merchant_1.id}/bulk_discounts"
     click_link("Create a New Bulk Discount")
+  
     fill_in :percent_off, with: 65
     fill_in :quantity_threshold, with: 11
     click_button "Create Bulk Discount"
@@ -36,10 +37,7 @@ RSpec.describe 'the bulk discounts index page' do
 
   it "displays a link that deletes a bulk discount" do
     visit "/merchants/#{merchant_1.id}/bulk_discounts"
-    save_and_open_page
     click_link("Delete Bulk Discount #{discount_1.id}")
     expect(page).to_not have_content(discount_1.id)
-    save_and_open_page
-
   end
 end

@@ -1,7 +1,8 @@
 class BulkDiscountsController < ApplicationController
 
   def index
-    @bulk_discounts = BulkDiscount.where(bulk_discount_params)
+    @merchant = Merchant.find(params[:id])
+    # @bulk_discounts = BulkDiscount.where(bulk_discount_params)
   end
 
   def show
@@ -9,7 +10,7 @@ class BulkDiscountsController < ApplicationController
   end
 
   def new
-
+    @merchant = Merchant.find(params[:id])
   end
 
   def create
@@ -20,7 +21,7 @@ class BulkDiscountsController < ApplicationController
         redirect_to "/merchants/#{params[:merchant_id].to_i}/bulk_discounts", notice: "Bulk discount created."
     else
         flash[:alert] = bulk_discount.errors.full_messages.join("") + "!"
-        render :new
+        redirect_back(fallback_location: "/merchants/#{params[:merchant_id].to_i}/bulk_discounts/new")
       end
     end
 
