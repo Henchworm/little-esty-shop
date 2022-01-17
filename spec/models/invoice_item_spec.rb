@@ -57,15 +57,9 @@ RSpec.describe InvoiceItem, type: :model do
     let!(:invoice_item_3) {InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_3.id, quantity: 20, unit_price: 50, status: 'pending', created_at: Time.new(2021))}
 
 
-    #sad path
+    #sad path: quantitity thesholds not met
     let!(:invoice_item_4) {InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_4.id, quantity: 5, unit_price: 50, status: 'pending', created_at: Time.new(2020))}
     let!(:invoice_item_5) {InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_4.id, quantity: 3, unit_price: 50, status: 'pending', created_at: Time.new(2020))}
-
-
-
-    it "sad path for discounts that cannot be applied" do
-      expect(invoice_item_4.best_applicable_discount).to eq(nil)
-    end
 
     it "finds the best discount" do
       expect(invoice_item_1.best_applicable_discount).to eq(discount_1)
@@ -73,13 +67,18 @@ RSpec.describe InvoiceItem, type: :model do
       expect(invoice_item_3.best_applicable_discount).to eq(discount_5)
     end
 
-    it "returns the total discounted revenue" do
+    it "sad path for discounts that cannot be applied" do
+      expect(invoice_item_4.best_applicable_discount).to eq(nil)
+    end
+
+    it "returns the total discounted revenue for an invoice item" do
       expect(invoice_item_1.items_discounted_revenue).to eq(80)
       expect(invoice_item_2.items_discounted_revenue).to eq(105)
       expect(invoice_item_3.items_discounted_revenue).to eq(500)
     end
 
-    it "returns total revenue if no discount is applied" do
+    it "returns a total revenue for an invoice item if no discount is applied" do
+      #invoice_items #4 and #5 do not meet the quant threshold for any discount
       expect(invoice_item_4.items_discounted_revenue).to eq(250)
       expect(invoice_item_5.items_discounted_revenue).to eq(150)
     end
