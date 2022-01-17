@@ -1,6 +1,8 @@
 <h1>Invoice # <%= @invoice.id %></h1>
 <p>Status: <%= @invoice.status %></p>
 <p>Total Revenue: <%= @invoice.total_revenue %></p>
+<p>Total Revenue Including Discounts: <%= @invoice.total_discounted_revenue %></p>
+
 <p>Created At: <%= @invoice.created_at.strftime("%A, %B %d %Y") %></p>
 
 <h3>Customer: <%=@invoice.customer.first_name %> <%= @invoice.customer.last_name %></h3>
@@ -8,7 +10,8 @@
 <h2>Items on this invoice:</h2>
 <% @invoice.invoice_items.each do |invitem| %>
 <div id="<%= invitem.item_id %>">
-  <p>Name: <%=invitem.item.name %></p>
+
+  <p>Name: <%=binding.pry; invitem.item.name %></p>
   <p>Quantity: <%=invitem.quantity %></p>
   <p>Price sold at: <%=invitem.unit_price %></p>
   <p>Status: <%=invitem.status %></p>

@@ -36,7 +36,6 @@ RSpec.describe 'the bulk discounts show page' do
     fill_in :quantity_threshold, with: 999
     click_button "Update Bulk Discount"
     expect(current_path).to eq("/merchants/#{merchant_1.id}/bulk_discounts/7777/edit")
-    save_and_open_page
     expect(page).to have_content("Percent off must be less than or equal to 100!")
   end
 
