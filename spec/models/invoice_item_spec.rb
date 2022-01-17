@@ -83,6 +83,17 @@ RSpec.describe InvoiceItem, type: :model do
       expect(invoice_item_5.items_discounted_revenue).to eq(150)
     end
 
+    it "finds the ID of the applied discount" do
+      expect(invoice_item_1.find_discount_id).to eq(discount_1.id)
+      expect(invoice_item_2.find_discount_id).to eq(discount_2.id)
+      expect(invoice_item_3.find_discount_id).to eq(discount_5.id)
+    end
+
+    it "reurns a message if no discounts are applied to an invoice item" do
+      expect(invoice_item_4.find_discount_id).to eq('No bulks discount applied to this invoice item.')
+      expect(invoice_item_5.find_discount_id).to eq('No bulks discount applied to this invoice item.')
+    end
+
   end
 
 

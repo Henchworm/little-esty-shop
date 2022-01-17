@@ -11,15 +11,19 @@
 <% @invoice.invoice_items.each do |invitem| %>
 <div id="<%= invitem.item_id %>">
 
-  <p>Name: <%=binding.pry; invitem.item.name %></p>
+  <p>Name: <%=invitem.item.name %></p>
   <p>Quantity: <%=invitem.quantity %></p>
   <p>Price sold at: <%=invitem.unit_price %></p>
+  <% if invitem.find_discount_id.class == Integer %>
+    <p>Discounts applied to this item: <%= link_to "Discount #{invitem.find_discount_id}", merchant_bulk_discount_path(invitem.item.merchant.id, invitem.find_discount_id), method: :get%></p>
+    <% else %>
+    <p><%= "#{invitem.find_discount_id}" %></p>
+  <% end %>
   <p>Status: <%=invitem.status %></p>
   <%= form_with url: "/merchants/#{@merchant.id}/invoices/#{@invoice.id}?invoice_item_id=#{invitem.id}", method: :patch, local: true do |form| %>
     <%= form.select :new_invoice_item_status, ['pending', 'shipped', 'packaged'], selected: invitem.status %>
     <%= form.submit "Update Item Status" %>
   <% end %>
 </div>
-
 <br>
 <% end %>
