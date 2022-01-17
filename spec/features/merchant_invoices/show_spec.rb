@@ -74,6 +74,16 @@ RSpec.describe 'the merchant invoice show page' do
   it 'displays total revenue for incorporated discounts' do
     visit "/merchants/#{merchant_1.id}/invoices/#{invoice_1.id}"
     expect(page).to have_content("Total Revenue Including Discounts: 225")
-    save_and_open_page
+  end
+
+  it "displays a link if discount was applied to items" do
+    visit "/merchants/#{merchant_1.id}/invoices/#{invoice_1.id}"
+    click_link "Discount #{discount_1.id}"
+    expect(current_path).to eq(merchant_bulk_discount_path(merchant_1.id, discount_1.id))
+  end
+
+  it "displays a message if no discounts were applied to the items" do
+    visit "/merchants/#{merchant_1.id}/invoices/#{invoice_1.id}"
+    expect(page).to have_content("No bulks discount applied to this invoice item.", count: 2)
   end
 end
