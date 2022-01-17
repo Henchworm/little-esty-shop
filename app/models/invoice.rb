@@ -17,7 +17,13 @@ class Invoice < ApplicationRecord
     .sum('quantity*unit_price')
   end
 
-  # def total_discounted_revenue
-  #   binding.pry
-  # end
+  def total_discounted_revenue
+    invoice_items.each do |item|
+      if item.best_applicable_discount > 0
+        (1 - item.best_applicable_discount) * item.unit_price * item.quantity
+      else
+        return item.unit_price * item.quantity
+      end
+    end
+  end
 end

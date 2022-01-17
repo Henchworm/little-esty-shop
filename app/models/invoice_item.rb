@@ -8,6 +8,7 @@ class InvoiceItem < ApplicationRecord
   def best_applicable_discount
     item.merchant.bulk_discounts
     .where("bulk_discounts.quantity_threshold <= #{self.quantity}")
-    .maximum(:percent_off).to_f / 100
+    .order(percent_off: :desc)
+    .first
   end
 end

@@ -63,13 +63,13 @@ RSpec.describe InvoiceItem, type: :model do
 
 
     it "sad path for discounts that cannot be applied" do
-      expect(invoice_item_4.best_applicable_discount).to eq(0.0)
+      expect(invoice_item_4.best_applicable_discount).to eq(nil)
     end
 
     it "finds the best discount" do
-      expect(invoice_item_1.best_applicable_discount).to eq(0.20)
-      expect(invoice_item_2.best_applicable_discount).to eq(0.30)
-      expect(invoice_item_3.best_applicable_discount).to eq(0.50)
+      expect(invoice_item_1.best_applicable_discount).to eq(discount_1)
+      expect(invoice_item_2.best_applicable_discount).to eq(discount_2)
+      expect(invoice_item_3.best_applicable_discount).to eq(discount_5)
     end
   end
 

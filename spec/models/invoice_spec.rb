@@ -56,10 +56,11 @@ RSpec.describe Invoice, type: :model do
     end
 
     xit 'total discounted revenue' do
-      expect(invoice_1.total_discounted_revenue).to eq(80)
+      expect(invoice_1.total_discounted_revenue).to eq(260)
     end
 
   end
+
 
   describe "class methods" do
 
