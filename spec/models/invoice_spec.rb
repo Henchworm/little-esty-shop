@@ -15,8 +15,7 @@ RSpec.describe Invoice, type: :model do
     let!(:merchant_2) {Merchant.create!(name: 'Bobbys Record Emporium')}
 
 
-    let!(:discount_1) {merchant_1.bulk_discounts.create!(percent_off: 20, quantity_threshold: 2)}
-    let!(:discount_2) {merchant_2.bulk_discounts.create!(percent_off: 50, quantity_threshold: 10)}
+    let!(:discount_1) {merchant_1.bulk_discounts.create!(percent_off: 50, quantity_threshold: 2)}
 
 
     let!(:item_1) {merchant_1.items.create!(name: 'Obsidian Nobice', description: 'A beautiful obsidian', unit_price: 50)}
@@ -34,6 +33,9 @@ RSpec.describe Invoice, type: :model do
       expect(invoice_1.total_revenue).to eq(250)
     end
 
+    it 'total discounted revenue' do
+      expect(invoice_1.total_discounted_revenue).to eq(150)
+    end
   end
 
 
