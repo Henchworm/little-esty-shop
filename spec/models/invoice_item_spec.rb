@@ -19,6 +19,7 @@ RSpec.describe InvoiceItem, type: :model do
 
 
 
+
     let!(:item_1) {merchant_1.items.create!(name: 'Obsidian Nobice', description: 'A beautiful obsidian', unit_price: 50)}
     let!(:item_2) {merchant_1.items.create!(name: 'Pleasure Geode', description: 'Glamourous Geode', unit_price: 100)}
     let!(:item_3) {merchant_1.items.create!(name: 'Brown Pebble', description: 'Classic rock', unit_price: 50)}
@@ -51,14 +52,14 @@ RSpec.describe InvoiceItem, type: :model do
     let!(:transaction_7) {invoice_1.transactions.create!(credit_card_number: '1234123412341234', credit_card_expiration_date: '11/22', result: 'success')}
     let!(:transaction_8) {invoice_1.transactions.create!(credit_card_number: '1234123412341234', credit_card_expiration_date: '11/22', result: 'success')}
 
-    let!(:invoice_item_1) {InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_1.id, quantity: 10, unit_price: 100, status: 'shipped')}
-    let!(:invoice_item_2) {InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_2.id, quantity: 15, unit_price: 100, status: 'packaged')}
+    let!(:invoice_item_1) {InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_1.id, quantity: 10, unit_price: 10, status: 'shipped')}
+    let!(:invoice_item_2) {InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_2.id, quantity: 15, unit_price: 10, status: 'packaged')}
     let!(:invoice_item_3) {InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_3.id, quantity: 20, unit_price: 50, status: 'pending', created_at: Time.new(2021))}
 
 
     #sad path
     let!(:invoice_item_4) {InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_4.id, quantity: 5, unit_price: 50, status: 'pending', created_at: Time.new(2020))}
-    let!(:invoice_item_5) {InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_4.id, quantity: 5, unit_price: 50, status: 'pending', created_at: Time.new(2020))}
+    let!(:invoice_item_5) {InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_4.id, quantity: 3, unit_price: 50, status: 'pending', created_at: Time.new(2020))}
 
 
 
@@ -71,6 +72,18 @@ RSpec.describe InvoiceItem, type: :model do
       expect(invoice_item_2.best_applicable_discount).to eq(discount_2)
       expect(invoice_item_3.best_applicable_discount).to eq(discount_5)
     end
+
+    it "returns the total discounted revenue" do
+      expect(invoice_item_1.items_discounted_revenue).to eq(80)
+      expect(invoice_item_2.items_discounted_revenue).to eq(105)
+      expect(invoice_item_3.items_discounted_revenue).to eq(500)
+    end
+
+    it "returns total revenue if no discount is applied" do
+      expect(invoice_item_4.items_discounted_revenue).to eq(250)
+      expect(invoice_item_5.items_discounted_revenue).to eq(150)
+    end
+
   end
 
 
