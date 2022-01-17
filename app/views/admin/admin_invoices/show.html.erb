@@ -1,5 +1,7 @@
 <h1>Invoice <%= @invoice.id %></h1>
 <h4>Total Revenue: <%= @invoice.total_revenue %></h4>
+<h4>Total Revenue Including Discounts: <%= @invoice.total_discounted_revenue %></h4>
+
 
 <div id="status-select">
   <h4>Status: <%= @invoice.status %></h4>
@@ -15,11 +17,15 @@
 <p>Created on: <%= @invoice.created_at.strftime("%A, %B %d %Y") %></p>
 <br>
 
-<h3>Items:</h3>
-<% @invoice.invoice_items.each do |invoice_item| %>
-  <p>Name: <%= invoice_item.item.name %></p>
-  <p>Quantity: <%= invoice_item.quantity %></p>
-  <p>Price per unit: $<%= invoice_item.unit_price %></p>
-  <p>Status: <%= invoice_item.status %></p>
-  <br>
+<h2>Items on this invoice:</h2>
+<% @invoice.invoice_items.each do |invitem| %>
+<div id="<%= invitem.item_id %>">
+  <p>Name: <%=invitem.item.name %></p>
+  <p>Quantity: <%=invitem.quantity %></p>
+  <p>Price sold at: <%=invitem.unit_price %></p>
+  <% if invitem.find_discount_id.class == Integer %>
+    <p>Discounts applied to this item: <%= link_to "Discount #{invitem.find_discount_id}", merchant_bulk_discount_path(invitem.item.merchant.id, invitem.find_discount_id), method: :get%></p>
+    <% else %>
+    <p><%= "#{invitem.find_discount_id}" %></p>
+  <% end %>
 <% end %>
