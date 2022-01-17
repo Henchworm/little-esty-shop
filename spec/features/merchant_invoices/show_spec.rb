@@ -6,6 +6,8 @@ RSpec.describe 'the merchant invoice show page' do
 
   let!(:merchant_1) {Merchant.create!(name: 'Billys Pet Rocks')}
 
+  let!(:discount_1) {merchant_1.bulk_discounts.create!(percent_off: 50, quantity_threshold: 3)}
+
   let!(:item_1) {merchant_1.items.create!(name: 'Obsidian Nobice', description: 'A beautiful obsidian', unit_price: 50)}
   let!(:item_2) {merchant_1.items.create!(name: 'Pleasure Geode', description: 'Glamourous Geode', unit_price: 100)}
   let!(:item_3) {merchant_1.items.create!(name: 'Brown Pebble', description: 'GClassic rock', unit_price: 50)}
@@ -67,5 +69,11 @@ RSpec.describe 'the merchant invoice show page' do
     visit "/merchants/#{merchant_1.id}/invoices/#{invoice_1.id}"
 
     expect(page).to have_content('Total Revenue: 300')
+  end
+
+  it 'displays total revenue for incorporated discounts' do
+    visit "/merchants/#{merchant_1.id}/invoices/#{invoice_1.id}"
+    expect(page).to have_content("Total Revenue Including Discounts: 225")
+    save_and_open_page
   end
 end
