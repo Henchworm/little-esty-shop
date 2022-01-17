@@ -6,13 +6,16 @@
 #   movies = Movie.create =  name: 'Star Wars'  =  name: 'Lord of the Rings' ])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-merchant_1 = Merchant.create!(name: 'Billys Pet Rocks', status: 0)
-merchant_2 = Merchant.create!(name: 'Jimmy Pet Stones', status: 1)
+merchant_1 = Merchant.create!(name: 'Billys Pet Rocks')
 
-merchant_1.bulk_discounts.create!(percent_off: 50, quantity_threshold: 10)
-merchant_1.bulk_discounts.create!(percent_off: 25, quantity_threshold: 20)
-merchant_1.bulk_discounts.create!(percent_off: 15, quantity_threshold: 10)
-merchant_2.bulk_discounts.create!(percent_off: 71, quantity_threshold: 60)
+discount_1 = merchant_1.bulk_discounts.create!(percent_off: 20, quantity_threshold: 10)
+discount_2 = merchant_1.bulk_discounts.create!(percent_off: 30, quantity_threshold: 15)
+discount_3 = merchant_1.bulk_discounts.create!(percent_off: 20, quantity_threshold: 15)
+discount_4 = merchant_1.bulk_discounts.create!(percent_off: 45, quantity_threshold: 20)
+discount_5 = merchant_1.bulk_discounts.create!(percent_off: 50, quantity_threshold: 20)
+
+
+
 
 
 item_1 = merchant_1.items.create!(name: 'Obsidian Nobice', description: 'A beautiful obsidian', unit_price: 50)
@@ -30,12 +33,12 @@ customer_4 = Customer.create!(first_name: 'Elvind', last_name: 'Opsvik')
 customer_5 = Customer.create!(first_name: 'Ethan', last_name: 'Iverson')
 customer_6 = Customer.create!(first_name: 'Chris', last_name: 'Speed')
 
-invoice_1 = customer_1.invoices.create!(status: 'completed')
-invoice_2 = customer_2.invoices.create!(status: 'completed')
-invoice_3 = customer_3.invoices.create!(status: 'completed')
-invoice_4 = customer_4.invoices.create!(status: 'completed')
-invoice_5 = customer_5.invoices.create!(status: 'completed')
-invoice_6 = customer_6.invoices.create!(status: 'completed')
+invoice_1 = customer_1.invoices.create!(status: 'completed' )
+invoice_2 = customer_2.invoices.create!(status: 'completed' )
+invoice_3 = customer_3.invoices.create!(status: 'completed' )
+invoice_4 = customer_4.invoices.create!(status: 'completed' )
+invoice_5 = customer_5.invoices.create!(status: 'completed' )
+invoice_6 = customer_6.invoices.create!(status: 'completed' )
 
 transaction_1 = invoice_1.transactions.create!(credit_card_number: '1234123412341234', credit_card_expiration_date: '11/22', result: 'success')
 transaction_2 = invoice_2.transactions.create!(credit_card_number: '1234123412341234', credit_card_expiration_date: '11/22', result: 'success')
@@ -47,9 +50,11 @@ transaction_6 = invoice_6.transactions.create!(credit_card_number: '123412341234
 transaction_7 = invoice_1.transactions.create!(credit_card_number: '1234123412341234', credit_card_expiration_date: '11/22', result: 'success')
 transaction_8 = invoice_1.transactions.create!(credit_card_number: '1234123412341234', credit_card_expiration_date: '11/22', result: 'success')
 
-invoice_item_1 = InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_1.id, quantity: 1, unit_price: 50, status: 'shipped')
-invoice_item_2 = InvoiceItem.create!(invoice_id: invoice_2.id, item_id: item_2.id, quantity: 1, unit_price: 50, status: 'packaged')
-invoice_item_3 = InvoiceItem.create!(invoice_id: invoice_3.id, item_id: item_3.id, quantity: 1, unit_price: 50, status: 'pending', created_at: Time.new(2021))
-invoice_item_4 = InvoiceItem.create!(invoice_id: invoice_4.id, item_id: item_4.id, quantity: 1, unit_price: 50, status: 'pending', created_at: Time.new(2020))
-invoice_item_5 = InvoiceItem.create!(invoice_id: invoice_5.id, item_id: item_5.id, quantity: 1, unit_price: 50, status: 'pending', created_at: Time.new(2019))
-invoice_item_6 = InvoiceItem.create!(invoice_id: invoice_6.id, item_id: item_6.id, quantity: 1, unit_price: 50, status: 'pending', created_at: Time.new(2018))
+invoice_item_1 = InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_1.id, quantity: 10, unit_price: 10, status: 'shipped')
+invoice_item_2 = InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_2.id, quantity: 15, unit_price: 10, status: 'packaged')
+invoice_item_3 = InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_3.id, quantity: 20, unit_price: 50, status: 'pending', created_at: Time.new(2021))
+
+
+#sad path: quantitity thesholds not met
+invoice_item_4 = InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_4.id, quantity: 5, unit_price: 50, status: 'pending', created_at: Time.new(2020))
+invoice_item_5 = InvoiceItem.create!(invoice_id: invoice_1.id, item_id: item_4.id, quantity: 3, unit_price: 50, status: 'pending', created_at: Time.new(2020))
