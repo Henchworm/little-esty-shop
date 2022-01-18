@@ -14,10 +14,6 @@ discount_3 = merchant_1.bulk_discounts.create!(percent_off: 20, quantity_thresho
 discount_4 = merchant_1.bulk_discounts.create!(percent_off: 45, quantity_threshold: 20)
 discount_5 = merchant_1.bulk_discounts.create!(percent_off: 50, quantity_threshold: 20)
 
-
-
-
-
 item_1 = merchant_1.items.create!(name: 'Obsidian Nobice', description: 'A beautiful obsidian', unit_price: 50)
 item_2 = merchant_1.items.create!(name: 'Pleasure Geode', description: 'Glamourous Geode', unit_price: 100)
 item_3 = merchant_1.items.create!(name: 'Brown Pebble', description: 'Classic rock', unit_price: 50)
