@@ -29,8 +29,8 @@ RSpec.configure do |config|
           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
           'User-Agent'=>'Faraday v2.1.0'
            }).
-         to_return(status: 200, body: '[{"date":"2022-02-21","localName":"Presidents Day"}]', headers: {})
-
+         to_return(status: 200, body: '[{"date":"2022-02-21","localName":"Presidents Day","name":"Washington''s Birthday","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-04-15","localName":"Good Friday","name":"Good Friday","countryCode":"US","fixed":false,"global":false,"counties":["US-CT","US-DE","US-HI","US-IN","US-KY","US-LA","US-NC","US-ND","US-NJ","US-TN"],"launchYear":null,"types":["Public"]}
+           ,{"date":"2022-04-01","localName":"April Fools Day","name":"Fool Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]}]', headers: {})
   end
 
   config.expect_with :rspec do |expectations|
