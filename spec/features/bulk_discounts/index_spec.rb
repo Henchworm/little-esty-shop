@@ -18,8 +18,10 @@ RSpec.describe 'the bulk discounts index page' do
 
   it "displays the name and date of the next three holidays" do
     visit merchant_bulk_discounts_path(merchant_1)
-    expect("Washingtons Birthday, 2022-02-21").to appear_before("Good Friday, 2022-04-15")
-    expect("Good Friday, 2022-04-15").to appear_before("Fool Day, 2022-04-01")
+    within "#upcoming_holidays" do
+      expect("Washingtons Birthday, 2022-02-21").to appear_before("Good Friday, 2022-04-15")
+      expect("Good Friday, 2022-04-15").to appear_before("Fool Day, 2022-04-01")
+    end 
   end
 
 
