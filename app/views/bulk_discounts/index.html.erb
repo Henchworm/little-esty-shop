@@ -1,6 +1,11 @@
 
 <h1>Bulk Discounts Index for <%=@merchant.name %></h1>
-<p><%= link_to "Create a New Bulk Discount", new_merchant_bulk_discount_path(@merchant.id), method: :get%></p>
+
+
+<p><%=link_to "Create a New Bulk Discount", new_merchant_bulk_discount_path(@merchant.id), method: :get%></p>
+
+<body>
+
 
 <% @merchant.bulk_discounts.each do |discount| %>
   <ul><span>Discount id: <%= discount.id  %>,
@@ -10,3 +15,13 @@
     <p><%= link_to "Delete Bulk Discount #{discount.id}", merchant_bulk_discount_path(@merchant.id, discount.id), method: :delete%></p>
 </span></ul>
 <% end %>
+
+<div class= "upcoming_holidays">
+Holidays:</h4>
+<ul> <p><%=@holiday_info.next_date%></p>
+     <p><%=@holiday_info.second_next_date%></p>
+     <p><%=@holiday_info.third_next_date%></p>
+</ul>
+</div>
+
+</body>
