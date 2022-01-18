@@ -93,7 +93,7 @@ RSpec.describe Merchant, type: :model do
 
   describe 'instance methods' do
 
-    xit "favorite customers" do
+    it "favorite customers" do
       expect(merchant_1.favorite_customers).to eq([customer_5, customer_1, customer_2, customer_3,  customer_4])
     end
 
@@ -115,7 +115,7 @@ RSpec.describe Merchant, type: :model do
       expect(merchants.only_enabled).to eq([merchant_1, merchant_2, merchant_3, merchant_7])
     end
 
-    xit 'only_disabled' do
+    it 'only_disabled' do
       merchants = Merchant.all
       expect(merchants.only_disabled).to eq([merchant_4, merchant_5, merchant_6])
     end
