@@ -11,10 +11,15 @@ RSpec.describe 'the bulk discounts index page' do
   let!(:discount_4) {merchant_2.bulk_discounts.create!(percent_off: 3, quantity_threshold: 60)}
 
   it "displays a link that visits each bulk discount show page" do
-    # visit "/merchants/#{merchant_1.id}/bulk_discounts"
     visit merchant_bulk_discounts_path(merchant_1)
     click_link("View Bulk Discount ##{discount_1.id}")
-    # expect(current_path).to eq("/merchants/#{merchant_1.id}/bulk_discounts/#{discount_1.id}")
+    expect(current_path).to eq("/merchants/#{merchant_1.id}/bulk_discounts/#{discount_1.id}")
+  end
+
+  it "displays the name and date of the next three holidays" do
+    visit merchant_bulk_discounts_path(merchant_1)
+    expect("Washingtons Birthday, 2022-02-21").to appear_before("Good Friday, 2022-04-15")
+    expect("Good Friday, 2022-04-15").to appear_before("Fool Day, 2022-04-01")
   end
 
 
