@@ -10,23 +10,6 @@ Bulk Discounts is an extension of Little Etsy Shop, a project that emphasizes CR
 Bulk Discounts builds upon the functionality of Little Etsy Shop, incorporating a "Bulk Discount" model that can be applied to invoices. 
 Bulk Discounts highlights crud functionality, scaliling up an existing Rails Application, and integrating API calls using the facade design pattern. 
 
-
-## Learning Goals
-- Write migrations to create tables and relationships between tables
-- Implement CRUD functionality for a resource using forms (form_tag or form_with), buttons, and links
-- Use MVC to organize code effectively, limiting the amount of logic included in views and controllers
-- Use built-in ActiveRecord methods to join multiple tables of data, make calculations, and group data based on one or more attributes
-- Write model tests that fully cover the data logic of the application
-- Write feature tests that fully cover the functionality of the application
-
-## Requirements
-- must use Rails 5.2.x
-- must use PostgreSQL
-- all code must be tested via feature tests and model tests, respectively
-- must use GitHub branching, team code reviews via GitHub comments, and github projects to track progress on user stories
-- must include a thorough README to describe the project
-- must deploy completed code to Heroku
-
 ## Database Schema
 
 ![alt text](https://github.com/Henchworm/little-esty-shop/blob/main/schema.png)
@@ -50,6 +33,25 @@ Bulk Discounts highlights crud functionality, scaliling up an existing Rails App
 ## Heroku Link 
 
 https://infinite-waters-12403.herokuapp.com/merchants/1/bulk_discounts
+
+
+## Learning Goals
+- Write migrations to create tables and relationships between tables
+- Implement CRUD functionality for a resource using forms (form_tag or form_with), buttons, and links
+- Use MVC to organize code effectively, limiting the amount of logic included in views and controllers
+- Use built-in ActiveRecord methods to join multiple tables of data, make calculations, and group data based on one or more attributes
+- Write model tests that fully cover the data logic of the application
+- Write feature tests that fully cover the functionality of the application
+
+## Requirements
+- must use Rails 5.2.x
+- must use PostgreSQL
+- all code must be tested via feature tests and model tests, respectively
+- must use GitHub branching, team code reviews via GitHub comments, and github projects to track progress on user stories
+- must include a thorough README to describe the project
+- must deploy completed code to Heroku
+
+
 
 
 
