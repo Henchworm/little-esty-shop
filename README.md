@@ -1,7 +1,7 @@
 # Little Esty Shop - Bulk Discounts
 [Assignment prompt](https://backend.turing.edu/module2/projects/bulk_discounts)
 ### Collaborators:
-* Chris Hewitt [Henchworm](https://github.com/Henchworm)
+* Chris Hewitt: [Henchworm](https://github.com/Henchworm)
 
 
 ## Background and Description
