@@ -24,7 +24,7 @@ Bulk Discounts highlights crud functionality, scaliling up an existing Rails App
 ![launchy v badge](https://img.shields.io/gem/v/launchy?color=red&label=launchy)
 ![rspec v badge](https://img.shields.io/gem/v/rspec?color=orange&label=rspec)
 ![simplecov v badge](https://img.shields.io/gem/v/simplecov?color=green&label=simplecov)
-![faraday v badge](https://img.shields.io/gem/v/faraday/2.1.0)
+![Gem](https://img.shields.io/gem/dv/faraday/2.1.0)
 
 
 ## Learning Goals
