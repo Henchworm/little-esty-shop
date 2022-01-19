@@ -38,6 +38,10 @@ Bulk Discounts highlights crud functionality, scaliling up an existing Rails App
 - must include a thorough README to describe the project
 - must deploy completed code to Heroku
 
+## Heroku Link 
+
+https://infinite-waters-12403.herokuapp.com/merchants/1/bulk_discounts
+
 
 ## Learning Goals
 - Write migrations to create tables and relationships between tables
