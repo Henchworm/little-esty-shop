@@ -29,7 +29,7 @@ Bulk Discounts highlights crud functionality, scaliling up an existing Rails App
 
 ## Database Schema
 
-![Screenshot](schema.png)
+![Screenshot]file:///Users/chrishewitt/Desktop/schema.png
 
 ## Ruby Gems
 
