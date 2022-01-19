@@ -25,13 +25,10 @@ Bulk Discounts highlights crud functionality, scaliling up an existing Rails App
 ![rspec v badge](https://img.shields.io/gem/v/rspec?color=orange&label=rspec)
 ![simplecov v badge](https://img.shields.io/gem/v/simplecov?color=green&label=simplecov)
 ![webmock v badge](https://img.shields.io/badge/webmock-v3.14.0-brightgreen)
+![vcr v badge](https://img.shields.io/badge/vcr-v3.3.0-red)
+![json v badge](https://img.shields.io/badge/json-v2.6.1-blue)
+![faraday v badge](https://img.shields.io/badge/faraday-v2.1.0-yellow)
 
-
-## Learning Goals
-- Practice designing a normalized database schema and defining model relationships
-- Utilize advanced routing techniques including namespacing to organize and group like functionality together.
-- Utilize advanced active record techniques to perform complex database queries
-- Practice consuming a public API while utilizing POROs as a way to apply OOP principles to organize code
 
 ## Requirements
 - must use Rails 5.2.x
@@ -41,9 +38,13 @@ Bulk Discounts highlights crud functionality, scaliling up an existing Rails App
 - must include a thorough README to describe the project
 - must deploy completed code to Heroku
 
-## Phases
 
-1. [Database Setup](./doc/db_setup.md)
-1. [User Stories](./doc/user_stories.md)
-1. [Extensions](./doc/extensions.md)
-1. [Evaluation](./doc/evaluation.md)
+## Learning Goals
+- Write migrations to create tables and relationships between tables
+- Implement CRUD functionality for a resource using forms (form_tag or form_with), buttons, and links
+- Use MVC to organize code effectively, limiting the amount of logic included in views and controllers
+- Use built-in ActiveRecord methods to join multiple tables of data, make calculations, and group data based on one or more attributes
+- Write model tests that fully cover the data logic of the application
+- Write feature tests that fully cover the functionality of the application
+
+
