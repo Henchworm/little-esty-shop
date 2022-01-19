@@ -1,5 +1,5 @@
-# Little Esty Shop
-[Assignment prompt](https://github.com/turingschool-examples/little-esty-shop)
+# Little Esty Shop - Bulk Discounts
+[Assignment prompt](https://backend.turing.edu/module2/projects/bulk_discounts)
 ### Collaborators:
 * Croix Kimmel [croixk](https://github.com/croixk)
 * Dylan Harper [dylan-harper](https://github.com/dylan-harper)
@@ -8,7 +8,9 @@
 
 ## Background and Description
 
-"Little Esty Shop" is a group project that requires students to build a fictitious e-commerce platform where merchants and admins can manage inventory and fulfill customer invoices.
+Bulk Discounts is an extension of Little Etsy Shop, a project that emphasizes CRUD and complex database queries. 
+Bulk Discounts builds upon the functionality of Little Etsy Shop, incorporating a "Bulk Discount" model that can be applied to invoices. 
+Bulk Discounts highlights crud functionality, scaliling up an existing Rails Application, and integrating API calls using the facade design pattern. 
 
 ## Database Schema
 
@@ -24,6 +26,8 @@
 ![launchy v badge](https://img.shields.io/gem/v/launchy?color=red&label=launchy)
 ![rspec v badge](https://img.shields.io/gem/v/rspec?color=orange&label=rspec)
 ![simplecov v badge](https://img.shields.io/gem/v/simplecov?color=green&label=simplecov)
+![faraday v badge](https://img.shields.io/gem/dv/faraday/2.1.0)
+
 
 ## Learning Goals
 - Practice designing a normalized database schema and defining model relationships
